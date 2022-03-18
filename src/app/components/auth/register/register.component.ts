@@ -41,7 +41,6 @@ export class RegisterComponent implements OnInit {
         },
         error: err => {
           const errors = err.error.errors;
-          console.log(errors)
           for (let prop in this.errors) {
             // @ts-ignore
             this.errors[prop] = errors[prop];
