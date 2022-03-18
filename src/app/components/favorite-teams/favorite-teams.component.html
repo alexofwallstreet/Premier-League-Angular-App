@@ -1,0 +1,14 @@
+<div class="container mt-lg-5">
+  <div>
+    <h1 class="display-1">Favorite Teams</h1>
+  </div>
+
+  <div class="row">
+    <app-favorite-team-item
+      *ngFor="let team of teams"
+      [team]="team"
+      class="col-md-4 mt-3"
+    ></app-favorite-team-item>
+  </div>
+</div>
+

@@ -1,0 +1,32 @@
+<div class="container overflow-auto mt-lg-4">
+  <div class="banner mb-lg-5">
+    <h1 class="display-1">Table</h1>
+  </div>
+  <app-spinner *ngIf="loading"></app-spinner>
+  <table *ngIf="!loading" class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Team</th>
+      <th scope="col">Games</th>
+      <th scope="col">Wins</th>
+      <th scope="col">Draws</th>
+      <th scope="col">Loses</th>
+      <th scope="col">+/-</th>
+      <th scope="col">Points</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr app-table-item
+        *ngFor="let team of teamTable; let i = index"
+        [team]="team"
+        [teamPlace]="i+1"
+    ></tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+

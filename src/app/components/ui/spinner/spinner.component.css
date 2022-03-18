@@ -1,0 +1,8 @@
+#spinner {
+  min-height: 100vh;
+}
+
+.spinner-wrapper {
+  width: 500px;
+  height: 500px;
+}

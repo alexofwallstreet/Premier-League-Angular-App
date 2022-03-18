@@ -1,0 +1,43 @@
+<div *ngIf="loading" class="mt-5">
+  <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="!loading" class="row align-items-center mt-5 overflow-auto">
+  <table class="table">
+    <tbody>
+    <tr>
+      <td class="text-center">
+        <div><img src="{{match.home_team.logo}}" alt="{{match.home_team.name}} logo" width="200px" height="200px"></div>
+        <hr>
+        <div class="display-6 mb-3 mt-2">{{match.home_team.name}}</div>
+      </td>
+      <td class="text-center">
+        <div class="display-1" *ngIf="match.stats">{{match.stats.goals_home_team}}</div>
+      </td>
+      <td class="text-center">
+        <div class="mb-3">
+          <div class="display-6">
+            <span *ngIf="!match.is_started">Fixture</span>
+            <span *ngIf="match.is_finished">Finished</span>
+            <span *ngIf="match.is_started && !match.is_finished">Live</span>
+          </div>
+        </div>
+        <div class="mt-2">
+          {{match.date | date}}
+        </div>
+        <div class="mt-2">
+          {{match.stadium.name}}, {{match.stadium.city}}
+        </div>
+      </td>
+      <td class="text-center">
+        <div class="display-1" *ngIf="match.stats">{{match.stats.goals_away_team}}</div>
+      </td>
+      <td class="text-center">
+        <img src="{{match.away_team.logo}}" alt="{{match.away_team.name}} logo" width="200px" height="200px">
+        <hr>
+        <div class="display-6 mb-3 mt-2">{{match.away_team.name}}</div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

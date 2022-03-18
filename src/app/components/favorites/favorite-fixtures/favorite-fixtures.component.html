@@ -1,0 +1,25 @@
+<div class="container overflow-auto mt-lg-4">
+  <div>
+    <h1 class="display-1">Favorite Teams Matches</h1>
+  </div>
+
+  <div class="mt-5">
+    <app-spinner *ngIf="loading"></app-spinner>
+  </div>
+
+  <table *ngIf="!loading" class="table table-striped mt-5">
+    <thead>
+    <tr>
+      <th scope="col" class="match-home-team">Home Team</th>
+      <th scope="col" class="match-info">Date/Stadium</th>
+      <th scope="col" class="match-away-team">Away Team</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr app-match-item
+        *ngFor="let match of matches"
+        [match]="match"
+    ></tr>
+    </tbody>
+  </table>
+</div>

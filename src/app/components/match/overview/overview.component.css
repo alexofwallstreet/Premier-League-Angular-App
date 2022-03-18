@@ -1,0 +1,14 @@
+td {
+  width: 15%;
+}
+
+.td:last-child, .td:first-child {
+  width: 27.5%;
+}
+
+.td-team-name {
+  width: 50%;
+}
+
+
+

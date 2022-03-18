@@ -1,0 +1,25 @@
+<div class="row mt-2">
+  <div class="col-md-6">
+    <ul class="list-group">
+      <li class="list-group-item active" aria-current="true">{{match.home_team.name}}</li>
+      <li *ngFor="let player of match.home_team.players" class="list-group-item">
+        {{player.name}} {{player.surname}}
+      </li>
+    </ul>
+    <div>
+      Manager: {{match.home_team.manager}}
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <ul class="list-group">
+      <li class="list-group-item active" aria-current="true">{{match.away_team.name}}</li>
+      <li *ngFor="let player of match.away_team.players" class="list-group-item">
+        {{player.name}} {{player.surname}}
+      </li>
+    </ul>
+    <div>
+      Manager: {{match.away_team.manager}}
+    </div>
+  </div>
+</div>

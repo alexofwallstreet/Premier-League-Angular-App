@@ -1,0 +1,19 @@
+<div class="container mt-lg-5">
+  <h1 *ngIf="match">{{match.home_team.name}} vs {{match.away_team.name}}</h1>
+  <span *ngIf="match">{{match.date | date}}</span>
+  <ul class="nav nav-tabs mt-4">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="overview" [state]="match">Overview</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="squads" [state]="match">Squads</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="events" [state]="match">Events</a>
+    </li>
+<!--    <li class="nav-item">-->
+<!--      <a class="nav-link" routerLink="edit" [state]="match">Edit</a>-->
+<!--    </li>-->
+  </ul>
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,42 @@
+
+<div id="edit-player-modal" tabindex="-1" aria-labelledby="exampleModalLabel" class="modal fade show" style="display: block;"
+     aria-modal="true" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="exampleModalLabel" class="modal-title">Player Editor</h5>
+        <button type="button" data-bs-dismiss="modal" aria-label="Close" class="btn-close" (click)="onClose()">
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-spinner *ngIf="loading"></app-spinner>
+        <div *ngIf="!loading">
+          <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" placeholder="Name" [(ngModel)]="player.name">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Surname</label>
+            <input type="text" class="form-control" placeholder="Surname" [(ngModel)]="player.surname">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Position</label>
+            <select class="form-select" [(ngModel)]="player.position.id" (ngModelChange)="onPositionChange()">
+              <option *ngFor="let p of positions" [ngValue]="p.id">{{p.name}}</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Team</label>
+            <select class="form-select" [(ngModel)]="player.team.id" (ngModelChange)="onTeamChange()">
+              <option *ngFor="let t of teams" [ngValue]="t.id">{{t.name}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" data-bs-dismiss="modal" class="btn btn-secondary" (click)="onClose()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="onEdit(player)">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

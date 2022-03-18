@@ -1,0 +1,50 @@
+<div class="container overflow-auto mt-lg-4">
+  <div>
+    <h1 class="display-1">Favorite Teams Results</h1>
+  </div>
+
+  <div class="mt-5">
+    <app-spinner *ngIf="loading"></app-spinner>
+  </div>
+
+  <table *ngIf="!loading" class="table table-striped mt-5">
+    <thead>
+    <tr>
+      <th scope="col" class="match-home-team">Home Team</th>
+      <th scope="col" class="match-home-team">Goals</th>
+      <th scope="col" class="match-info">Date/Stadium</th>
+      <th scope="col" class="match-info">Goals</th>
+      <th scope="col" class="match-away-team">Away Team</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let match of matches">
+      <td class="match-home-team">
+        <div class="d-flex justify-content-start">
+          <img class="team-logo" src="{{match.home_team.logo}}" alt="{{ match.home_team.name }} logo" width="50px" height="50px">
+          <div class="display-6">{{ match.home_team.name }}</div>
+        </div>
+      </td>
+      <td class="match-home-team">
+        <div class="display-3" *ngIf="match.stats">{{match.stats.goals_home_team}}</div>
+      </td>
+      <td class="match-info">
+        <div class="mt-2">{{ match.date | date }}</div>
+        <div>{{ match.stadium }}</div>
+        <a class="btn btn-primary my-2" [routerLink]="['/matches/', match.id]">
+          Match Details
+        </a>
+      </td>
+      <td class="match-home-team">
+        <div class="display-3" *ngIf="match.stats">{{match.stats.goals_away_team}}</div>
+      </td>
+      <td class="match-away-team">
+        <div class="d-flex justify-content-end">
+          <div class="display-6">{{ match.away_team.name }}</div>
+          <img class="team-logo" src="{{match.away_team.logo}}" alt="{{ match.away_team.name }} logo" width="50px" height="50px">
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

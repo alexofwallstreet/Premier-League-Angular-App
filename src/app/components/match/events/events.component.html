@@ -1,0 +1,98 @@
+<div *ngIf="loading" class="mt-5">
+  <app-spinner></app-spinner>
+</div>
+<div *ngIf="!loading" class="mt-2">
+  <div *ngIf="match.is_started" class="alert alert-success" role="alert">
+    Match Started!
+  </div>
+  <div *ngIf="!match.is_started && userService.currentUser.role === 'admin'"
+       (click)="startMatch()" class="btn btn-success w-100">
+    Start Match
+  </div>
+
+  <div *ngFor="let event of match.game_events" class="alert alert-primary" role="alert">
+    <div class="row">
+      <div class="col-md-2 display-1">{{event.minute}}</div>
+      <div class="col">
+        <div class="display-6">{{event.event_type.description}}</div>
+        <div class="fs-3">{{getPlayerFullname(event.player_id)}}, {{getTeamName(event.team_id)}}</div>
+        <div>{{event.description}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="match.is_started && !match.is_finished && userService.currentUser.role === 'admin'" (click)="startMatch()" class="btn btn-outline-success w-100"
+       data-bs-toggle="modal" data-bs-target="#addMatchEventModal">
+    Add Event
+  </div>
+
+  <div *ngIf="match.is_started && !match.is_finished && userService.currentUser.role === 'admin'"
+       (click)="endMatch()" class="btn btn-outline-danger w-100 mt-2">
+    End Match
+  </div>
+
+  <div *ngIf="match.is_finished" class="alert alert-danger" role="alert">
+    Match Ended!
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="addMatchEventModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Event</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label">Event Type</label>
+          <select class="form-select" [(ngModel)]="newGameEvent.event_type.id">
+            <option *ngFor="let t of gameEventTypes" [ngValue]="t.id">{{t.description}}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Team</label>
+          <select class="form-select" (ngModelChange)="changeTeam($event)" [(ngModel)]="newGameEvent.team_id">
+            <option *ngFor="let t of teams" [ngValue]="t.id">{{t.name}}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Player</label>
+          <select class="form-select" [(ngModel)]="newGameEvent.player_id">
+            <option *ngFor="let p of getTeamPlayers()" [ngValue]="p.id">{{p.name + ' ' + p.surname}}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Minute: {{newGameEvent.minute}}</label>
+          <input type="range" class="form-range" max="90" min="0" [(ngModel)]="newGameEvent.minute">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <textarea class="form-control" placeholder="Leave a comment here"
+                    [(ngModel)]="newGameEvent.description"></textarea>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" id="addEventBtn" class="btn btn-primary" (click)="addGameEvent()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+    keyboard: false
+  });
+  document.querySelector('#addEventBtn').addEventListener('click', () => {
+    console.log('click')
+    myModal.hide();
+  })
+</script>

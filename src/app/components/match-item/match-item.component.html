@@ -1,0 +1,21 @@
+<td class="match-home-team" [ngClass]="match.is_finished ? 'bg-light-green':''">
+  <div class="d-flex justify-content-start align-items-center">
+    <img class="team-logo" src="{{match.home_team.logo}}" alt="{{ match.home_team.name }} logo" width="50px" height="50px">
+    <div class="display-6">{{ match.home_team.name }}</div>
+    <div class="display-4 ml-auto">{{match.stats ? match.stats.goals_home_team : ''}}</div>
+  </div>
+</td>
+<td class="match-info" [ngClass]="match.is_finished ? 'bg-light-green':''">
+  <div class="mt-2">{{ match.date | date }}</div>
+  <div>{{ match.stadium }}</div>
+  <a class="btn btn-primary my-2" [routerLink]="['/matches/', match.id]">
+    Match Details
+  </a>
+</td>
+<td class="match-away-team" [ngClass]="match.is_finished ? 'bg-light-green':''">
+  <div class="d-flex justify-content-end align-items-center">
+    <div class="display-4 mr-auto">{{match.stats ? match.stats.goals_away_team : ''}}</div>
+    <div class="display-6">{{ match.away_team.name }}</div>
+    <img class="team-logo" src="{{match.away_team.logo}}" alt="{{ match.away_team.name }} logo" width="50px" height="50px">
+  </div>
+</td>

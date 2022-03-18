@@ -1,0 +1,38 @@
+<div class="container overflow-auto mt-lg-4">
+  <div class="banner mb-lg-5">
+    <h1 class="display-1">Players</h1>
+  </div>
+  <app-spinner *ngIf="loading"></app-spinner>
+  <table *ngIf="!loading" class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Team</th>
+      <th scope="col">Position</th>
+      <th scope="col" *ngIf="userService.currentUser.role === 'admin'">Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr app-player-item
+      *ngFor="let player of players | paginate : {
+      itemsPerPage: pagination.itemsPerPage,
+      currentPage: pagination.page,
+      totalItems: pagination.totalItems}"
+      (onEditPlayer)="openEditModal(player)"
+      [player]="player"
+    ></tr>
+    </tbody>
+  </table>
+
+  <pagination-controls
+    *ngIf="!loading"
+    class="pagination"
+    (pageChange)="gty((pagination.page = $event))"
+  ></pagination-controls>
+</div>
+
+<app-player-edit *ngIf="showEditModal" [player]="playerToEdit" (onEditPlayer)="updatePlayer($event)" (onModalClose)="closeEditModal()"></app-player-edit>
+
+
+

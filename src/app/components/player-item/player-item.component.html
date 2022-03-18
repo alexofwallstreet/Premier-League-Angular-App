@@ -1,0 +1,11 @@
+<td>{{ player.id }}</td>
+<td>
+  {{ player.name + " " + player.surname }}
+</td>
+<td>{{ player.team.name | uppercase }}</td>
+<td>{{ player.position.name }}</td>
+<td>
+  <div class="actions_buttons">
+    <div class="btn btn-primary" *ngIf="userService.currentUser.role === 'admin'" (click)="onEdit(player)">Edit</div>
+  </div>
+</td>

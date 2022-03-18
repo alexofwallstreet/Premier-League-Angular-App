@@ -1,0 +1,65 @@
+/* You can add global styles to this file, and also import other style files */
+#content {
+  margin-bottom: auto;
+  height: 100%;
+}
+
+table {
+  border: 1px solid var(--bs-gray-300) !important;
+  padding: 10px !important;
+}
+
+tr {
+  vertical-align: middle;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.actions_buttons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.75rem;
+}
+
+.team-logo {
+  object-fit: fill;
+  margin-right: 1rem;
+}
+
+.match-away-team {
+  text-align: right;
+}
+
+.match-home-team {
+  text-align: left;
+}
+
+.match-info {
+  text-align: center;
+}
+
+.match-away-team img {
+  text-align: right;
+  margin-left: 1rem;
+}
+
+.match-home-team img {
+  text-align: left;
+  margin-right: 1rem;
+}
+
+.match-info {
+  text-align: center;
+}
+
+footer {
+  margin-top: 2rem;
+  width: 100%;
+  min-height: 100px;
+}
+
+

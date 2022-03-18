@@ -1,0 +1,16 @@
+<td>{{ team.id }}</td>
+<td>
+  <img class="team-logo" src="{{team.logo}}" alt="logo" width="50px" height="50px">
+  {{ team.name }}
+</td>
+<td>{{ team.stadium }}</td >
+<td>{{ team.manager }}</td>
+<td>
+  <div class="actions_buttons">
+    <app-like-button
+      *ngIf="userService.currentUser.is_logged"
+      [isDisabled]="loading"
+      (click)="toggleFavoriteTeam(team)" [isFavorite]="team.is_favorite.exists"
+    ></app-like-button>
+  </div>
+</td>
