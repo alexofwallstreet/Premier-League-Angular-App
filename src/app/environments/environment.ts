@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8000/api/v1'
+  baseUrl: 'https://polar-shelf-59117.herokuapp.com/api/v1'
 };
 
 export enum ApiPaths {
